@@ -29,7 +29,7 @@ const Home = () => (
             <H2 small="Tablets" />
             <Products>
                 {productsData.map(item => (
-                    (item.category === "tablet" && item.featured === true) ?
+                    (item.featured === true && item.category === "tablet") ?
                         < Product
                             image={item.image}
                             amount={item.amount}

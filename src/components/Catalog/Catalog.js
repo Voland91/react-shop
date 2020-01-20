@@ -28,12 +28,18 @@ class Catalog extends React.Component {
         this.setState({ search: "", value: "" });
     };
 
+    filter = (event) => {
+        this.setState({ search: event.target.value });
+    }
+
+    clearFilter = (event) => {
+        this.setState({ search: event.target.value });
+    }
+
     render() {
 
         const { search } = this.state;
-        const filteredProducts = productsData.filter(product => {
-            return product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-        });
+        const filteredProducts = productsData.filter(product => (product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 || product.manufacture.toLowerCase().indexOf(search.toLowerCase()) !== -1));
 
         return (<>
             <Navigation />
@@ -41,12 +47,12 @@ class Catalog extends React.Component {
                 <H1 header="Catalog" />
 
                 <CatalogContainer>
-
                     <ColumnLeft>
                         <Filter
                             searchFn={this.searchingProduct}
                             clearFn={this.clearSearch}
                             value={this.state.value}
+                            filterFn={this.filter}
                         />
                     </ColumnLeft>
 
@@ -61,7 +67,6 @@ class Catalog extends React.Component {
                                     key={item.id}
                                 />)
                             }
-
                         </Products>
                     </ColumnRight>
                 </CatalogContainer>

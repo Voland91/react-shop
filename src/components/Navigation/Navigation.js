@@ -3,8 +3,8 @@ import styles from './Navigation.module.css';
 import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
 
-function Navigation() {
-    return (
+const Navigation = () =>
+    (
         <nav className={styles.navbar}>
             <Container>
                 <ul className={styles.nav}>
@@ -14,7 +14,6 @@ function Navigation() {
                 </ul>
             </Container>
         </nav>
-    )
-};
+    );
 
 export default Navigation;
