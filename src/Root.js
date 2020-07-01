@@ -8,6 +8,8 @@ import Catalog from "./components/Templates/Catalog";
 import About from "./components/Templates/About";
 import Navigation from "./components/Organisms/Navigation";
 import Footer from "./components/Organisms/Footer";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -24,7 +26,7 @@ const StyledConetentWrapper = styled.div`
 `;
 
 const Root = () => (
-  <>
+  <Provider store={store}>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Router>
@@ -41,7 +43,7 @@ const Root = () => (
         </StyledWrapper>
       </Router>
     </ThemeProvider>
-  </>
+  </Provider>
 );
 
 export default Root;

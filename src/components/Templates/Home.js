@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import Title from "../Atoms/Title";
 import Product from "../Molecules/Product";
-import productsData from "../../products.json";
 
 const StyledProductsWrapper = styled.div`
   display: flex;
 `;
 
-const Home = () => (
+const Home = ({ products }) => (
   <>
     <Title>Welcome to our store</Title>
     <Title small>Desktops</Title>
     <StyledProductsWrapper>
-      {productsData.map(
+      {products.map(
         (item) =>
           item.featured === true &&
           item.category === "desktop" && (
@@ -29,7 +29,7 @@ const Home = () => (
     </StyledProductsWrapper>
     <Title small>Tablets</Title>
     <StyledProductsWrapper>
-      {productsData.map(
+      {products.map(
         (item) =>
           item.featured === true &&
           item.category === "tablet" && (
@@ -46,4 +46,8 @@ const Home = () => (
   </>
 );
 
-export default Home;
+const mapStateToProps = (state) => ({
+  products: state.productsState,
+});
+
+export default connect(mapStateToProps)(Home);
