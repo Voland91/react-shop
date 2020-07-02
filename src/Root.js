@@ -9,7 +9,9 @@ import About from "./components/Templates/About";
 import Navigation from "./components/Organisms/Navigation";
 import Footer from "./components/Organisms/Footer";
 import { Provider } from "react-redux";
-import store from "./store/index";
+import configureStore from "./data/store";
+
+const store = configureStore();
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -35,7 +37,7 @@ const Root = () => (
           <StyledConetentWrapper>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/catalog" component={Catalog} />
+              {/* <Route path="/catalog" component={Catalog} /> */}
               <Route path="/about" component={About} />
             </Switch>
           </StyledConetentWrapper>
