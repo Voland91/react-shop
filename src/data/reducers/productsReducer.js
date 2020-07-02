@@ -1,6 +1,5 @@
 import {
   LOADING_STATES,
-  PRODUCTS_GET,
   PRODUCTS_GET_REQUEST,
   PRODUCTS_GET_SUCCESS,
   PRODUCTS_GET_FAILURE,
@@ -8,7 +7,7 @@ import {
 
 const initialState = {
   loadingState: {},
-  products: {},
+  products: [],
 };
 
 const products = (state = initialState, action) => {
@@ -38,7 +37,7 @@ const products = (state = initialState, action) => {
 
       return {
         ...state,
-        products: {},
+        products: [],
         loadingState: newLoadingState,
       };
 

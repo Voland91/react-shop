@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import Title from "../Atoms/Title";
 import Product from "../Molecules/Product";
 import Filter from "../Organisms/Filter";
@@ -44,6 +43,8 @@ class Catalog extends React.Component {
   render() {
     const { products } = this.props;
     const { search } = this.state;
+    console.log(this.props.products);
+
     const filteredProducts = products.filter(
       (product) =>
         product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
@@ -80,8 +81,4 @@ class Catalog extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  products: state.productsState,
-});
-
-export default connect(mapStateToProps)(Catalog);
+export default Catalog;
