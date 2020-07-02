@@ -43,7 +43,6 @@ class Catalog extends React.Component {
   render() {
     const { products } = this.props;
     const { search } = this.state;
-    console.log(this.props.products);
 
     const filteredProducts = products.filter(
       (product) =>
@@ -54,7 +53,6 @@ class Catalog extends React.Component {
     return (
       <>
         <Title>Catalog</Title>
-
         <StyledCatalogWrapper>
           <Filter
             searchFn={this.searchingProduct}
