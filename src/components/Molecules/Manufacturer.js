@@ -15,14 +15,14 @@ const StyledFilterWrapper = styled.div`
   align-content: center;
 `;
 
-const Manufakturer = ({ filterFn }) => (
+const Manufakturer = ({ filterFn, products }) => (
   <StyledManufacturterhWrapper>
     <Text bold>Manufacturer</Text>
     <StyledFilterWrapper>
       <Input
         radio
         type="radio"
-        name="manufacturere"
+        name="manufacture"
         id="all"
         value=""
         onChange={filterFn}
@@ -30,28 +30,22 @@ const Manufakturer = ({ filterFn }) => (
       />
       <Text>All</Text>
     </StyledFilterWrapper>
-    <StyledFilterWrapper>
-      <Input
-        radio
-        type="radio"
-        name="manufacturere"
-        id="apple"
-        value="apple"
-        onChange={filterFn}
-      />
-      <Text>Apple</Text>
-    </StyledFilterWrapper>
-    <StyledFilterWrapper>
-      <Input
-        radio
-        type="radio"
-        name="manufacturere"
-        id="dell"
-        value="dell"
-        onChange={filterFn}
-      />
-      <Text>Dell</Text>
-    </StyledFilterWrapper>
+    {products.map(
+      (item) =>
+        item.featured && (
+          <StyledFilterWrapper key={item.id}>
+            <Input
+              radio
+              type="radio"
+              name="manufacture"
+              id={item.manufacture}
+              value={item.manufacture}
+              onChange={filterFn}
+            />
+            <Text>{item.manufacture}</Text>
+          </StyledFilterWrapper>
+        )
+    )}
   </StyledManufacturterhWrapper>
 );
 

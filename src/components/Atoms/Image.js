@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const Image = styled.img`
-  display: block;
-  width: 90%;
-  /* height: 65%; */
-  margin: 0 auto;
-  flex: 1;
+  width: 80%;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    width: 90%;
+  }
 `;
 
 export default Image;

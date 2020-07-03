@@ -7,7 +7,7 @@ const StyledProductsWrapper = styled.div`
   display: flex;
 `;
 
-const Home = ({ products }) => {
+const Home = ({ products, addToCart }) => {
   return (
     <>
       <Title>Welcome to our store</Title>
@@ -24,6 +24,7 @@ const Home = ({ products }) => {
                 name={item.name}
                 manufacture={item.manufacture}
                 key={item.id}
+                addToCart={addToCart}
               />
             )
         )}
@@ -41,6 +42,7 @@ const Home = ({ products }) => {
                 name={item.name}
                 manufacture={item.manufacture}
                 key={item.id}
+                addToCart={addToCart}
               />
             )
         )}

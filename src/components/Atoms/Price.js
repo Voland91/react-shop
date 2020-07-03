@@ -6,7 +6,6 @@ const Price = styled.p`
   line-height: 28px;
   color: ${({ theme }) => theme.blue};
   padding: 3px 0px;
-  cursor: pointer;
 `;
 
 export default Price;

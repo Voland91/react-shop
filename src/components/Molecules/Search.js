@@ -5,12 +5,7 @@ import Button from "../Atoms/Button";
 import TextInput from "../Atoms/Input";
 
 const StyledSearchWrapper = styled.div`
-  margin-top: 5px;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 10px;
 `;
 
 const StyledTextWrapper = styled.div`

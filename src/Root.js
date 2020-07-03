@@ -6,6 +6,7 @@ import { theme } from "./Theme/mainTheme";
 
 import { connect } from "react-redux";
 import { fetchProducts } from "./data/actions/productsAction";
+import { addToCart } from "./data/actions/cartAction";
 
 import Home from "./components/Templates/Home";
 import Catalog from "./components/Templates/Catalog";
@@ -22,33 +23,39 @@ const StyledWrapper = styled.div`
 
 const StyledConetentWrapper = styled.div`
   flex: 1;
-  width: 970px;
+  width: 100%;
+  max-width: 970px;
   padding: 0 15px;
   margin: 0 auto;
 `;
 
-const Root = ({ products, fetchProducts }) => {
+const Root = ({ products, fetchProducts, cart, addToCart }) => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
+  console.log(cart);
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Router>
           <StyledWrapper>
-            <Navigation />
+            <Navigation cart={cart} />
             <StyledConetentWrapper>
               <Switch>
                 <Route
                   exact
                   path="/"
-                  component={() => <Home products={products} />}
+                  component={() => (
+                    <Home products={products} addToCart={addToCart} />
+                  )}
                 />
                 <Route
                   path="/catalog"
-                  component={() => <Catalog products={products} />}
+                  component={() => (
+                    <Catalog products={products} addToCart={addToCart} />
+                  )}
                   products={products}
                 />
                 <Route path="/about" component={About} />
@@ -66,7 +73,8 @@ export default connect(
   (state) => {
     return {
       products: state.products.products,
+      cart: state.cart.itemsCount,
     };
   },
-  { fetchProducts }
+  { fetchProducts, addToCart }
 )(Root);

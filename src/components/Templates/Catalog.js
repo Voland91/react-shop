@@ -6,15 +6,17 @@ import Filter from "../Organisms/Filter";
 
 const StyledCatalogWrapper = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const StyledProductsWrapper = styled.div`
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
 `;
 
-const StyledColumnRight = styled.div`
-  width: 75%;
+const StyledSearchWrapper = styled.div`
+  margin-top: 7px;
 `;
 
 class Catalog extends React.Component {
@@ -41,7 +43,7 @@ class Catalog extends React.Component {
   };
 
   render() {
-    const { products } = this.props;
+    const { products, addToCart } = this.props;
     const { search } = this.state;
 
     const filteredProducts = products.filter(
@@ -54,25 +56,28 @@ class Catalog extends React.Component {
       <>
         <Title>Catalog</Title>
         <StyledCatalogWrapper>
-          <Filter
-            searchFn={this.searchingProduct}
-            clearFn={this.clearSearch}
-            value={this.state.value}
-            filterFn={this.filter}
-          />
-          <StyledColumnRight>
-            <StyledProductsWrapper>
-              {filteredProducts.map((item) => (
-                <Product
-                  image={item.image}
-                  amount={item.amount}
-                  name={item.name}
-                  manufacture={item.manufacture}
-                  key={item.id}
-                />
-              ))}
-            </StyledProductsWrapper>
-          </StyledColumnRight>
+          <StyledSearchWrapper>
+            <Filter
+              searchFn={this.searchingProduct}
+              clearFn={this.clearSearch}
+              value={this.state.value}
+              filterFn={this.filter}
+              products={products}
+            />
+          </StyledSearchWrapper>
+          <StyledProductsWrapper>
+            {filteredProducts.map((item) => (
+              <Product
+                image={item.image}
+                amount={item.amount}
+                name={item.name}
+                manufacture={item.manufacture}
+                key={item.id}
+                addToCart={addToCart}
+                catalog
+              />
+            ))}
+          </StyledProductsWrapper>
         </StyledCatalogWrapper>
       </>
     );

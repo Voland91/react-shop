@@ -10,10 +10,10 @@ const StyledFilterWrapper = styled.div`
   background-color: ${({ theme }) => theme.lightBrown};
 `;
 
-const Filter = ({ searchFn, clearFn, value, filterFn }) => (
+const Filter = ({ searchFn, clearFn, value, filterFn, products }) => (
   <StyledFilterWrapper>
     <Search searchFn={searchFn} clearFn={clearFn} value={value} />
-    <Manufacturer filterFn={filterFn} />
+    <Manufacturer filterFn={filterFn} products={products} />
   </StyledFilterWrapper>
 );
 
