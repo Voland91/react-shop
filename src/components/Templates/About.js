@@ -1,4 +1,7 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
+
+import Modal from "../Views/Modal";
 import Title from "../Atoms/Title";
 import Text from "../Atoms/Text";
 
@@ -28,6 +31,11 @@ const About = () => (
       tellus pellentesque pharetra. Quisque pharetra lectus molestie, posuere
       lectus eget, tempor justo.
     </Text>
+    <Switch>
+      <Route path="/about/modal">
+        <Modal />
+      </Route>
+    </Switch>
   </>
 );
 

@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
-import GlobalStyle from "./Theme/GlobalStyle";
-import { theme } from "./Theme/mainTheme";
+import GlobalStyle from "../../Theme/GlobalStyle";
+import { theme } from "../../Theme/mainTheme";
 
 import { connect } from "react-redux";
-import { fetchProducts } from "./data/actions/productsAction";
-import { addToCart } from "./data/actions/cartAction";
+import { fetchProducts } from "../../data/actions/productsAction";
+import { addToCart } from "../../data/actions/cartAction";
 
-import Home from "./components/Templates/Home";
-import Catalog from "./components/Templates/Catalog";
-import About from "./components/Templates/About";
-import Navigation from "./components/Organisms/Navigation";
-import Footer from "./components/Organisms/Footer";
+import Home from "../Templates/Home";
+import Catalog from "../Templates/Catalog";
+import About from "../Templates/About";
+import Navigation from "../Organisms/Navigation";
+import Footer from "../Organisms/Footer";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -34,7 +34,6 @@ const Root = ({ products, fetchProducts, cart, addToCart }) => {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log(cart);
   return (
     <>
       <GlobalStyle />
@@ -44,21 +43,16 @@ const Root = ({ products, fetchProducts, cart, addToCart }) => {
             <Navigation cart={cart} />
             <StyledConetentWrapper>
               <Switch>
-                <Route
-                  exact
-                  path="/"
-                  component={() => (
-                    <Home products={products} addToCart={addToCart} />
-                  )}
-                />
-                <Route
-                  path="/catalog"
-                  component={() => (
-                    <Catalog products={products} addToCart={addToCart} />
-                  )}
-                  products={products}
-                />
+                <Route exact path="/">
+                  <Home products={products} addToCart={addToCart} />
+                </Route>
+                <Route path="/catalog">
+                  <Catalog products={products} addToCart={addToCart} />
+                </Route>
                 <Route path="/about" component={About} />
+                <Route path="/home">
+                  <Home products={products} addToCart={addToCart} />
+                </Route>
               </Switch>
             </StyledConetentWrapper>
             <Footer />
@@ -71,6 +65,7 @@ const Root = ({ products, fetchProducts, cart, addToCart }) => {
 
 export default connect(
   (state) => {
+    console.log(state.cart);
     return {
       products: state.products.products,
       cart: state.cart.itemsCount,

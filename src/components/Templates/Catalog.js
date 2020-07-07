@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Switch, Route } from "react-router-dom";
+
+import Modal from "../Views/Modal";
 import Title from "../Atoms/Title";
 import Product from "../Molecules/Product";
 import Filter from "../Organisms/Filter";
@@ -16,72 +19,71 @@ const StyledProductsWrapper = styled.div`
 `;
 
 const StyledSearchWrapper = styled.div`
-  margin-top: 7px;
+  margin-top: 5px;
+  margin-right: 5px;
 `;
 
-class Catalog extends React.Component {
-  state = {
-    search: "",
-    value: "",
+const Catalog = ({ products, addToCart }) => {
+  const [search, setSearch] = useState("");
+  const [value, setValue] = useState("");
+
+  const searchingProduct = (event) => {
+    setSearch(event.target.value);
+    setValue(event.target.value);
   };
 
-  searchingProduct = (event) => {
-    this.setState({ search: event.target.value, value: event.target.value });
-  };
-
-  clearSearch = (event) => {
+  const clearSearch = (event) => {
     event.preventDefault();
-    this.setState({ search: "", value: "" });
+    setSearch("");
+    setValue("");
   };
 
-  filter = (event) => {
-    this.setState({ search: event.target.value });
+  const filter = (event) => {
+    setSearch(event.target.value);
   };
 
-  clearFilter = (event) => {
-    this.setState({ search: event.target.value });
-  };
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+      product.manufacture.toLowerCase().indexOf(search.toLowerCase()) !== -1
+  );
 
-  render() {
-    const { products, addToCart } = this.props;
-    const { search } = this.state;
-
-    const filteredProducts = products.filter(
-      (product) =>
-        product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-        product.manufacture.toLowerCase().indexOf(search.toLowerCase()) !== -1
-    );
-
-    return (
-      <>
-        <Title>Catalog</Title>
-        <StyledCatalogWrapper>
-          <StyledSearchWrapper>
-            <Filter
-              searchFn={this.searchingProduct}
-              clearFn={this.clearSearch}
-              value={this.state.value}
-              filterFn={this.filter}
-              products={products}
+  return (
+    <>
+      <Title>Catalog</Title>
+      <StyledCatalogWrapper>
+        <StyledSearchWrapper>
+          <Filter
+            searchFn={searchingProduct}
+            clearFn={clearSearch}
+            value={value}
+            filterFn={filter}
+            products={products}
+          />
+        </StyledSearchWrapper>
+        <StyledProductsWrapper>
+          {filteredProducts.map((item) => (
+            <Product
+              image={item.image}
+              amount={item.amount}
+              name={item.name}
+              manufacture={item.manufacture}
+              key={item.id}
+              id={item.id}
+              addToCart={addToCart}
+              catalog
             />
-          </StyledSearchWrapper>
-          <StyledProductsWrapper>
-            {filteredProducts.map((item) => (
-              <Product
-                image={item.image}
-                amount={item.amount}
-                name={item.name}
-                manufacture={item.manufacture}
-                key={item.id}
-                addToCart={addToCart}
-                catalog
-              />
-            ))}
-          </StyledProductsWrapper>
-        </StyledCatalogWrapper>
-      </>
-    );
-  }
-}
+          ))}
+        </StyledProductsWrapper>
+      </StyledCatalogWrapper>
+
+      <Switch>
+        <Route path="/catalog/modal">
+          <Modal />
+        </Route>
+      </Switch>
+    </>
+  );
+};
 
 export default Catalog;

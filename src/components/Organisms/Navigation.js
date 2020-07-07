@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../Atoms/Button";
+import { useHistory } from "react-router-dom";
+
+import CartButton from "../Atoms/CartButton";
 import Text from "../Atoms/Text";
 import icon from "../../assets/shopping-cart.svg";
 
@@ -10,7 +12,6 @@ const StyledWrapper = styled.div`
   min-height: 50px;
   background-color: ${({ theme }) => theme.dark};
   display: flex;
-  align-items: center;
   justify-content: center;
 `;
 
@@ -40,28 +41,38 @@ const StyledItemWrapper = styled.li`
 const StyledCartButtonWrapper = styled.div`
   align-self: center;
   display: flex;
+  align-items: center;
 `;
 
-const Navigation = ({ cart }) => (
-  <StyledWrapper>
-    <StyledNavWrap>
-      <StyledListWrapper>
-        <StyledItemWrapper>
-          <Link to="/">Home</Link>
-        </StyledItemWrapper>
-        <StyledItemWrapper>
-          <Link to="/catalog">Catalog</Link>
-        </StyledItemWrapper>
-        <StyledItemWrapper>
-          <Link to="/about">About</Link>
-        </StyledItemWrapper>
-      </StyledListWrapper>
-      <StyledCartButtonWrapper>
-        <Button cart src={icon} />
-        <Text cart>{cart}</Text>
-      </StyledCartButtonWrapper>
-    </StyledNavWrap>
-  </StyledWrapper>
-);
+const Navigation = ({ cart }) => {
+  const history = useHistory();
+  const actualUrl = history.location.pathname;
+
+  return (
+    <StyledWrapper>
+      <StyledNavWrap>
+        <StyledListWrapper>
+          <StyledItemWrapper>
+            <Link to="/">Home</Link>
+          </StyledItemWrapper>
+          <StyledItemWrapper>
+            <Link to="/catalog">Catalog</Link>
+          </StyledItemWrapper>
+          <StyledItemWrapper>
+            <Link to="/about">About</Link>
+          </StyledItemWrapper>
+        </StyledListWrapper>
+        <StyledCartButtonWrapper>
+          <CartButton
+            to={actualUrl === "/" ? "home/modal" : `${actualUrl}/modal`}
+            cart
+            src={icon}
+          />
+          <Text cart>{cart}</Text>
+        </StyledCartButtonWrapper>
+      </StyledNavWrap>
+    </StyledWrapper>
+  );
+};
 
 export default Navigation;

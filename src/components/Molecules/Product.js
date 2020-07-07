@@ -37,14 +37,22 @@ const StyledImageWrapper = styled.div`
     `}
 `;
 
-const Product = ({ catalog, manufacture, name, image, amount, addToCart }) => (
+const Product = ({
+  id,
+  catalog,
+  manufacture,
+  name,
+  image,
+  amount,
+  addToCart,
+}) => (
   <StyledProductWrapper catalog={catalog}>
     <StyledImageWrapper catalog={catalog}>
       <Image src={image} alt={manufacture + " " + name} />
     </StyledImageWrapper>
     <Price>{`${amount} $`}</Price>
     <Name>{name}</Name>
-    <Button cartSmall onClick={addToCart}>
+    <Button cartSmall onClick={() => addToCart(id)}>
       dodaj do koszyka
     </Button>
   </StyledProductWrapper>

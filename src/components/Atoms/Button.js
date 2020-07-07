@@ -8,16 +8,6 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
 
-  ${({ cart, src }) =>
-    cart &&
-    css`
-      background: url(${src});
-      background-repeat: no-repeat;
-      background-color: transparent;
-      height: 24px;
-      width: 24px;
-    `};
-
   ${({ cartSmall, src }) =>
     cartSmall &&
     css`

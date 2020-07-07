@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import configureStore from "./data/store";
-import Root from "./Root";
+import Root from "./components/Views/Root";
 
 const store = configureStore();
 
