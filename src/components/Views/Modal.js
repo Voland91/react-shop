@@ -12,6 +12,6 @@ const Modal = ({ products, cart }) =>
 
 export default connect((state) => {
   return {
-    cart: state.cart.items,
+    cart: state.cart,
   };
 })(Modal);

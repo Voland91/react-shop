@@ -1,12 +1,6 @@
-import {
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
-  CLEAR_CART,
-  CLEAR_ITEM,
-} from "../constants";
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART, CLEAR_ITEM } from '../constants';
 
 const initialState = {
-  itemsCount: 0,
   items: [],
 };
 
@@ -16,20 +10,20 @@ const cart = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       return {
-        itemsCount: state.itemsCount + 1,
         items:
           (index === -1 && [...state.items, { id: action.id, count: 1 }]) ||
           state.items.map((item, i) =>
-            index === i ? { id: action.id, count: ++item.count } : item
+            // eslint-disable-next-line no-plusplus
+            index === i ? { id: action.id, count: ++item.count } : item,
           ),
       };
     }
 
     case REMOVE_FROM_CART: {
       return {
-        itemsCount: state.itemsCount - 1,
         items: state.items.map((item, i) =>
-          index === i ? { id: action.id, count: --item.count } : item
+          // eslint-disable-next-line no-plusplus
+          index === i ? { id: action.id, count: --item.count } : item,
         ),
       };
     }
@@ -40,11 +34,7 @@ const cart = (state = initialState, action) => {
 
     case CLEAR_ITEM: {
       return {
-        itemsCount: state.items.map((item) => state.itemsCount - item.count),
-        items: state.items.map(
-          (item, i) =>
-            index === i && state.items.splice(i, 1) && console.log(state)
-        ),
+        items: state.items.map((item, i) => (index === i ? { id: item.id, count: 0 } : item)),
       };
     }
 

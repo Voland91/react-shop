@@ -83,7 +83,9 @@ const Cart = ({ products, cart, addToCart, removeFromCart, clearCart, clearItem 
             X
           </Button>
         </StyledNavWrapper>
-        {cart.length === 0 ? (
+        {cart.items.reduce((prev, cur) => {
+          return prev + cur.count;
+        }, 0) === 0 ? (
           <StyledEmptyCartWrapper key={1}>
             <Title cart>Twój koszyk jest pusty</Title>
             <Button cartSmall onClick={handleClose}>
@@ -91,7 +93,7 @@ const Cart = ({ products, cart, addToCart, removeFromCart, clearCart, clearItem 
             </Button>
           </StyledEmptyCartWrapper>
         ) : (
-          cart.map(
+          cart.items.map(
             (item) =>
               item.count > 0 &&
               products.map(
@@ -134,7 +136,7 @@ Cart.propTypes = {
   clearCart: PropTypes.func.isRequired,
   clearItem: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  cart: PropTypes.objectOf(PropTypes.shape).isRequired,
 };
 
 export default connect(null, {

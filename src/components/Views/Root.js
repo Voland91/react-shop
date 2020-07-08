@@ -70,7 +70,7 @@ const Root = ({ products, fetchProducts, cart, addToCart }) => {
 Root.propTypes = {
   addToCart: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  cart: PropTypes.number.isRequired,
+  cart: PropTypes.objectOf(PropTypes.shape).isRequired,
   fetchProducts: PropTypes.func.isRequired,
 };
 
@@ -78,7 +78,7 @@ export default connect(
   (state) => {
     return {
       products: state.products.products,
-      cart: state.cart.itemsCount,
+      cart: state.cart,
     };
   },
   { fetchProducts, addToCart },

@@ -63,12 +63,12 @@ const Navigation = ({ cart }) => {
           </StyledItemWrapper>
         </StyledListWrapper>
         <StyledCartButtonWrapper>
-          <CartButton
-            to={actualUrl === '/' ? 'home/modal' : `${actualUrl}/modal`}
-            cart
-            src={icon}
-          />
-          <Text cart>{cart}</Text>
+          <CartButton to={actualUrl === '/' ? 'home/modal' : `${actualUrl}/modal`} src={icon} />
+          <Text cart>
+            {cart.items.reduce((prev, cur) => {
+              return prev + cur.count;
+            }, 0)}
+          </Text>
         </StyledCartButtonWrapper>
       </StyledNavWrap>
     </StyledWrapper>
@@ -76,7 +76,7 @@ const Navigation = ({ cart }) => {
 };
 
 Navigation.propTypes = {
-  cart: PropTypes.number.isRequired,
+  cart: PropTypes.objectOf(PropTypes.shape).isRequired,
 };
 
 export default Navigation;
