@@ -40,7 +40,7 @@ const Root = ({ products, fetchProducts, cart, addToCart }) => {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <StyledWrapper>
             <Navigation cart={cart} />
             <StyledConetentWrapper>
