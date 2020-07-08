@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import CartButton from "../Atoms/CartButton";
-import Text from "../Atoms/Text";
-import icon from "../../assets/shopping-cart.svg";
+import CartButton from '../Atoms/CartButton';
+import Text from '../Atoms/Text';
+import icon from '../../assets/shopping-cart.svg';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -64,7 +64,7 @@ const Navigation = ({ cart }) => {
         </StyledListWrapper>
         <StyledCartButtonWrapper>
           <CartButton
-            to={actualUrl === "/" ? "home/modal" : `${actualUrl}/modal`}
+            to={actualUrl === '/' ? 'home/modal' : `${actualUrl}/modal`}
             cart
             src={icon}
           />
@@ -73,6 +73,10 @@ const Navigation = ({ cart }) => {
       </StyledNavWrap>
     </StyledWrapper>
   );
+};
+
+Navigation.propTypes = {
+  cart: PropTypes.number.isRequired,
 };
 
 export default Navigation;

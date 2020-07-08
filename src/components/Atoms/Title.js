@@ -13,6 +13,14 @@ const H1 = styled.h1`
       font-size: 22px;
       padding: 5px 0;
     `}
+
+  ${({ cart }) =>
+    cart &&
+    css`
+      color: ${({ theme }) => theme.blue};
+      text-align: center;
+      text-transform: none;
+    `}
 `;
 
 export default H1;

@@ -1,9 +1,11 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Price from "../Atoms/Price";
-import Image from "../Atoms/Image";
-import Name from "../Atoms/Name";
-import Button from "../Atoms/Button";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+
+import Price from '../Atoms/Price';
+import Image from '../Atoms/Image';
+import Name from '../Atoms/Name';
+import Button from '../Atoms/Button';
 
 const StyledProductWrapper = styled.div`
   display: flex;
@@ -37,18 +39,10 @@ const StyledImageWrapper = styled.div`
     `}
 `;
 
-const Product = ({
-  id,
-  catalog,
-  manufacture,
-  name,
-  image,
-  amount,
-  addToCart,
-}) => (
+const Product = ({ id, catalog, manufacture, name, image, amount, addToCart }) => (
   <StyledProductWrapper catalog={catalog}>
     <StyledImageWrapper catalog={catalog}>
-      <Image src={image} alt={manufacture + " " + name} />
+      <Image src={image} alt={`${manufacture} ${name}`} />
     </StyledImageWrapper>
     <Price>{`${amount} $`}</Price>
     <Name>{name}</Name>
@@ -57,5 +51,19 @@ const Product = ({
     </Button>
   </StyledProductWrapper>
 );
+
+Product.propTypes = {
+  id: PropTypes.string.isRequired,
+  catalog: PropTypes.bool,
+  manufacture: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
+  addToCart: PropTypes.func.isRequired,
+};
+
+Product.defaultProps = {
+  catalog: false,
+};
 
 export default Product;

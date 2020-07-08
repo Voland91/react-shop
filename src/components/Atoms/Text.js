@@ -25,7 +25,7 @@ const Text = styled.p`
       margin-left: 15px
         font-size: 14px;
         font-weight: ${({ theme }) => theme.bold};
-        color: ${({ theme }) => theme.white};
+        color: ${({ theme }) => theme.blue};
       `}
 `;
 

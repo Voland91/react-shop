@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Switch, Route } from "react-router-dom";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import Modal from "../Views/Modal";
-import Title from "../Atoms/Title";
-import Product from "../Molecules/Product";
-import Filter from "../Organisms/Filter";
+import Modal from '../Views/Modal';
+import Title from '../Atoms/Title';
+import Product from '../Molecules/Product';
+import Filter from '../Organisms/Filter';
 
 const StyledCatalogWrapper = styled.div`
   display: flex;
@@ -24,8 +25,8 @@ const StyledSearchWrapper = styled.div`
 `;
 
 const Catalog = ({ products, addToCart }) => {
-  const [search, setSearch] = useState("");
-  const [value, setValue] = useState("");
+  const [search, setSearch] = useState('');
+  const [value, setValue] = useState('');
 
   const searchingProduct = (event) => {
     setSearch(event.target.value);
@@ -34,8 +35,8 @@ const Catalog = ({ products, addToCart }) => {
 
   const clearSearch = (event) => {
     event.preventDefault();
-    setSearch("");
-    setValue("");
+    setSearch('');
+    setValue('');
   };
 
   const filter = (event) => {
@@ -45,7 +46,7 @@ const Catalog = ({ products, addToCart }) => {
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-      product.manufacture.toLowerCase().indexOf(search.toLowerCase()) !== -1
+      product.manufacture.toLowerCase().indexOf(search.toLowerCase()) !== -1,
   );
 
   return (
@@ -79,11 +80,16 @@ const Catalog = ({ products, addToCart }) => {
 
       <Switch>
         <Route path="/catalog/modal">
-          <Modal />
+          <Modal products={products} />
         </Route>
       </Switch>
     </>
   );
+};
+
+Catalog.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default Catalog;

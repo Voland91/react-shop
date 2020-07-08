@@ -1,7 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Search from "../Molecules/Search";
-import Manufacturer from "../Molecules/Manufacturer";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+import Search from '../Molecules/Search';
+import Manufacturer from '../Molecules/Manufacturer';
 
 const StyledFilterWrapper = styled.div`
   display: flex;
@@ -16,5 +18,13 @@ const Filter = ({ searchFn, clearFn, value, filterFn, products }) => (
     <Manufacturer filterFn={filterFn} products={products} />
   </StyledFilterWrapper>
 );
+
+Filter.propTypes = {
+  searchFn: PropTypes.func.isRequired,
+  clearFn: PropTypes.func.isRequired,
+  filterFn: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default Filter;

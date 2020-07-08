@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Image = styled.img`
   width: 80%;
@@ -8,6 +8,15 @@ const Image = styled.img`
   &:hover {
     width: 90%;
   }
+
+  ${({ cart }) =>
+    cart &&
+    css`
+      width: 100%;
+      &:hover {
+        width: 100%;
+      }
+    `}
 `;
 
 export default Image;

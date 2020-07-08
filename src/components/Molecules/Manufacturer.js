@@ -1,7 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Text from "../Atoms/Text";
-import Input from "../Atoms/Input";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+import Text from '../Atoms/Text';
+import Input from '../Atoms/Input';
 
 const StyledManufacturterhWrapper = styled.div`
   margin-top: 15px;
@@ -26,7 +28,7 @@ const Manufakturer = ({ filterFn, products }) => (
         id="all"
         value=""
         onChange={filterFn}
-        defaultChecked={true}
+        defaultChecked
       />
       <Text>All</Text>
     </StyledFilterWrapper>
@@ -44,9 +46,14 @@ const Manufakturer = ({ filterFn, products }) => (
             />
             <Text>{item.manufacture}</Text>
           </StyledFilterWrapper>
-        )
+        ),
     )}
   </StyledManufacturterhWrapper>
 );
+
+Manufakturer.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  filterFn: PropTypes.func.isRequired,
+};
 
 export default Manufakturer;

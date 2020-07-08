@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import Modal from "../Views/Modal";
-import Title from "../Atoms/Title";
-import Product from "../Molecules/Product";
+import Modal from '../Views/Modal';
+import Title from '../Atoms/Title';
+import Product from '../Molecules/Product';
 
 const StyledProductsWrapper = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Home = ({ products, addToCart }) => (
       {products.map(
         (item) =>
           item.featured === true &&
-          item.category === "desktop" && (
+          item.category === 'desktop' && (
             <Product
               image={item.image}
               amount={item.amount}
@@ -29,7 +30,7 @@ const Home = ({ products, addToCart }) => (
               addToCart={addToCart}
               id={item.id}
             />
-          )
+          ),
       )}
     </StyledProductsWrapper>
 
@@ -38,7 +39,7 @@ const Home = ({ products, addToCart }) => (
       {products.map(
         (item) =>
           item.featured === true &&
-          item.category === "tablet" && (
+          item.category === 'tablet' && (
             <Product
               image={item.image}
               amount={item.amount}
@@ -48,15 +49,20 @@ const Home = ({ products, addToCart }) => (
               addToCart={addToCart}
               id={item.id}
             />
-          )
+          ),
       )}
     </StyledProductsWrapper>
     <Switch>
       <Route path="/home/modal">
-        <Modal />
+        <Modal products={products} />
       </Route>
     </Switch>
   </>
 );
+
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape).isRequired,
+};
 
 export default Home;

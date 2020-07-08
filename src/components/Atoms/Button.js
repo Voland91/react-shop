@@ -1,18 +1,19 @@
 import styled, { css } from "styled-components";
 
 const Button = styled.button`
-  color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.black};
   text-decoration: none;
   font-size: 13px;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.blue};
+  }
 
-  ${({ cartSmall, src }) =>
+  ${({ cartSmall }) =>
     cartSmall &&
     css`
-      background: url(${src});
-      background-repeat: no-repeat;
       background-color: ${({ theme }) => theme.blue};
       margin: 10px;
       padding: 4px 10px;
@@ -24,6 +25,28 @@ const Button = styled.button`
       &:hover {
         background-color: transparent;
         color: ${({ theme }) => theme.blue};
+      }
+    `};
+
+  ${({ close }) =>
+    close &&
+    css`
+      font-weight: ${({ theme }) => theme.bold};
+      width: 20px;
+      height: 20px;
+      padding: 0;
+    `};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: auto;
+      background-color: ${({ theme }) => theme.gray};
+      border: none;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.gray};
+        color: ${({ theme }) => theme.white};
       }
     `};
 `;
