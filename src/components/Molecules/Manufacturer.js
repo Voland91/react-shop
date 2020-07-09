@@ -17,39 +17,45 @@ const StyledFilterWrapper = styled.div`
   align-content: center;
 `;
 
-const Manufakturer = ({ filterFn, products }) => (
-  <StyledManufacturterhWrapper>
-    <Text bold>Manufacturer</Text>
-    <StyledFilterWrapper>
-      <Input
-        radio
-        type="radio"
-        name="manufacture"
-        id="all"
-        value=""
-        onChange={filterFn}
-        defaultChecked
-      />
-      <Text>All</Text>
-    </StyledFilterWrapper>
-    {products.map(
-      (item) =>
-        item.featured && (
-          <StyledFilterWrapper key={item.id}>
-            <Input
-              radio
-              type="radio"
-              name="manufacture"
-              id={item.manufacture}
-              value={item.manufacture}
-              onChange={filterFn}
-            />
-            <Text>{item.manufacture}</Text>
-          </StyledFilterWrapper>
-        ),
-    )}
-  </StyledManufacturterhWrapper>
-);
+const Manufakturer = ({ filterFn, products }) => {
+  const manufactures = [
+    ...new Set(products.map((item) => (item.featured ? item.manufacture : null))),
+  ];
+
+  return (
+    <StyledManufacturterhWrapper>
+      <Text bold>Manufacturer</Text>
+      <StyledFilterWrapper>
+        <Input
+          radio
+          type="radio"
+          name="manufacture"
+          id="all"
+          value=""
+          onChange={filterFn}
+          defaultChecked
+        />
+        <Text>All</Text>
+      </StyledFilterWrapper>
+      {manufactures.map(
+        (item) =>
+          item !== null && (
+            <StyledFilterWrapper key={item.id}>
+              <Input
+                radio
+                type="radio"
+                name="manufacture"
+                id={item}
+                value={item}
+                onChange={filterFn}
+              />
+              <Text>{item}</Text>
+            </StyledFilterWrapper>
+          ),
+      )}
+    </StyledManufacturterhWrapper>
+  );
+};
 
 Manufakturer.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape).isRequired,

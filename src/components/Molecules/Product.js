@@ -11,7 +11,7 @@ const StyledProductWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: white;
-  margin: 1%;
+  margin: 5px;
   text-align: center;
   align-items: center;
   justify-content: space-between;
@@ -22,7 +22,7 @@ const StyledProductWrapper = styled.div`
     catalog &&
     css`
       margin: 5px;
-      width: 162px;
+      max-width: 23%;
       flex-wrap: wrap;
     `};
 `;
