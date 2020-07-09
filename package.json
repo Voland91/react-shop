@@ -1,5 +1,4 @@
 {
-  "homepage": "https://voland91.github.io/react-shop",
   "name": "moja-aplikacja",
   "version": "0.1.0",
   "private": true,
@@ -28,8 +27,6 @@
     "styled-components": "4.1.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "npm run -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
