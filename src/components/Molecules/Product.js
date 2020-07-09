@@ -47,7 +47,7 @@ const Product = ({ id, catalog, manufacture, name, image, amount, addToCart }) =
     <Price>{`${amount} $`}</Price>
     <Name>{name}</Name>
     <Button cartSmall onClick={() => addToCart(id)}>
-      dodaj do koszyka
+      add to cart
     </Button>
   </StyledProductWrapper>
 );

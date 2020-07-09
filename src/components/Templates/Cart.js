@@ -78,7 +78,7 @@ const Cart = ({ products, cart, addToCart, removeFromCart, clearCart, clearItem 
     <StyledCartWrapper onClick={handleClose}>
       <StyledContentWrapper onClick={(e) => e.stopPropagation()}>
         <StyledNavWrapper>
-          <Button onClick={() => clearCart()}>wyczyść koszyk</Button>
+          <Button onClick={() => clearCart()}>clear cart</Button>
           <Button cartSmall close onClick={handleClose}>
             X
           </Button>
@@ -87,9 +87,9 @@ const Cart = ({ products, cart, addToCart, removeFromCart, clearCart, clearItem 
           return prev + cur.count;
         }, 0) === 0 ? (
           <StyledEmptyCartWrapper key={1}>
-            <Title cart>Twój koszyk jest pusty</Title>
+            <Title cart>Your cart is empty :(</Title>
             <Button cartSmall onClick={handleClose}>
-              dodaj produkty
+              add items
             </Button>
           </StyledEmptyCartWrapper>
         ) : (
