@@ -10,11 +10,11 @@ To deploy on your machine clone this repo, run npm install command and npm start
 This project was bootstrapped with Create React App.
 
 Links:
-•	React Router: https://github.com/ReactTraining/react-router
-•	React Redux: https://github.com/reduxjs/react-redux
-•	Styled Components: https://github.com/styled-components/styled-components
-•	PropTypes: https://github.com/facebook/prop-types
-•	ESLint: https://github.com/eslint/eslint
-•	Atomic Design: https://bradfrost.com/blog/post/atomic-web-design/
-•	Font Awesome: https://fontawesome.com/
-•	API - https://d24huwa7xw9s1p.cloudfront.net/
+-	React Router: https://github.com/ReactTraining/react-router
+-	React Redux: https://github.com/reduxjs/react-redux
+-	Styled Components: https://github.com/styled-components/styled-components
+-	PropTypes: https://github.com/facebook/prop-types
+-	ESLint: https://github.com/eslint/eslint
+-	Atomic Design: https://bradfrost.com/blog/post/atomic-web-design/
+-	Font Awesome: https://fontawesome.com/
+-	API - https://d24huwa7xw9s1p.cloudfront.net/
